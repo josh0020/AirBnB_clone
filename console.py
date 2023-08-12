@@ -1,5 +1,9 @@
 #!usr/bin/python3
-"""Defines the AirBnB Console"""
+"""
+
+Defines the AirBnB Console
+
+"""
 
 
 class HBNBCommand:
