@@ -25,8 +25,7 @@ class BaseModel:
                 else:
                     self.__dict__[k] = v
         else:
-            self.id = str(uuid4())
-            self.created_at = datetime.today()
+            models.storage.new(self)
 
     def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
@@ -36,13 +35,16 @@ class BaseModel:
     def save(self):
         """Updates updated_at with the current datetime"""
         self.updated_at = datetime.today()
+        models.storage.save()
 
     def to_dict(self):
         """Return a dictionary containing all keys/values of
         __dict__ of the instance
         """
-        self.__dict__["__class__"] = self.__class__.__name__
-        self.__dict__["created_at"] = self.created_at.isoformat()
-        self.__dict__["updated_at"] = self.updated_at.isoformat()
-        return self.__dict__
+        class_info = self.__dict__.copy()
+        class_info['__class__'] = self.__class__.__name__
+        class_info['created_at'] = self.created_at.isoformat()
+        class_info['updated_at'] = self.updated_at.isoformat()
+
+        return class_info
 
