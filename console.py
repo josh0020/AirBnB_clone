@@ -3,10 +3,10 @@
 import cmd
 
 
-class HBNBCommand(cmd.Cmd):
+class HBNBCommand():
     """Defines the command interpreter"""
     pass
 
 
 if __name__ == "__main__":
-    HBNBCommand().cmdloop()
+    HBNBCommand()
