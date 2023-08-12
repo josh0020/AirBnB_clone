@@ -31,7 +31,7 @@ class BaseModel:
     def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
         name = self.__class__.__name__
-        return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(name, self.id, self.__dict__)
 
     def save(self):
         """Updates updated_at with the current datetime"""
@@ -42,8 +42,8 @@ class BaseModel:
         __dict__ of the instance
         """
         kvdict = self.__dict__.copy()
+        kvdict["__class__"] = self.__class__.__name__
         kvdict["created_at"] = self.created_at.isoformat()
         kvdict["updated_at"] = self.updated_at.isoformat()
-        kvdict["__class__"] = self.__class__.__name__
         return kvdict
 
