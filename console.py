@@ -5,6 +5,7 @@ Passes the pycodestyle
 
 """
 
+
 class Pass:
     """Pass Test"""
     pass
