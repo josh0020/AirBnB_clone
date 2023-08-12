@@ -4,7 +4,7 @@
 ##### Project to be done in teams of 2 people (your team: Bojack Lolwerikoi, Joshua kiptoo)
 
 <p align="center">
-  <img src="img/logo.png" alt="ALXHBNB">
+  <img src="pngs/logo.png" alt="ALXHBNB">
 </p>
 
 <p align="center">AirBnB clone.</p>
@@ -153,5 +153,5 @@ $
 All tests should also pass in non-interactive mode: `$ echo "python3 -m unittest discover tests" | bash`
 
 <p align="center">
-  <img src="img/structure.png" alt="Clone structure">
+  <img src="pngs/structure.png" alt="Clone structure">
 </p>
