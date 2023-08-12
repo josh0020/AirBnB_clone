@@ -30,7 +30,7 @@ class BaseModel:
     def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
         name = self.__class__.__name__
-        return f"[{name}] ({self.id}) {self.__dict__}"
+        return "[{}] ({}) {}".format(name, self.id, self.__dict__)
 
     def save(self):
         """Updates updated_at with the current datetime"""
