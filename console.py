@@ -1,11 +1,12 @@
 #!usr/bin/python3
-"""Pass Class
-
-Passes the pycodestyle
-
-"""
+"""Defines the AirBnB Console"""
 
 
-class Pass:
-    """Pass Test"""
+class HBNBCommand:
+    """Defines the command interpreter"""
     pass
+
+
+if __name__ == "__main__":
+    HBNBCommand()
+
