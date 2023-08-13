@@ -3,6 +3,10 @@
 import cmd
 import models
 from models.base_model import BaseModel
+from models.user import User
+import re
+import shlex
+from datetime import datetime
 
 
 class HBNBCommand(cmd.Cmd):
@@ -63,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
         args = self.parseline(line)[1]
         if command is None:
             print('** class name missing **')
-        elif command not in self.allowed_classes:
+        elif command not in self.__clone_classes:
             print("** class doesn't exist **")
         elif args == '':
             print('** instance id missing **')
@@ -74,6 +78,7 @@ class HBNBCommand(cmd.Cmd):
                 print('** no instance found **')
             else:
                 del models.storage.all()[k]
+                models.storage.save()
 
     def do_all(self, line):
         """Prints all string representation of all
@@ -83,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
         objs = models.storage.all()
         if command is None:
             print([str(objs[obj]) for obj in objs])
-        elif command in self.allowed_classes:
+        elif command in self.__clone_classes:
             keys = objs.keys()
             print([str(objs[key]) for key in keys if key.startswith(command)])
         else:
@@ -91,29 +96,30 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """Updates an instance based on the class name and id by adding or
-        updating attribute (save the change into the JSON file)
+        updating attribute (save the change into the JSON file).
         """
         args = shlex.split(line)
-        args_size = len(args)
-        if args_size == 0:
+        size_args = len(args)
+        if size_args == 0:
             print('** class name missing **')
-        elif args[0] not in self.allowed_classes:
+        elif args[0] not in self.__clone_classes:
             print("** class doesn't exist **")
-        elif args_size == 1:
+        elif size_args == 1:
             print('** instance id missing **')
         else:
             key = args[0] + '.' + args[1]
             inst_data = models.storage.all().get(key)
             if inst_data is None:
                 print('** no instance found **')
-            elif args_size == 2:
+            elif size_args == 2:
                 print('** attribute name missing **')
-            elif args_size == 3:
+            elif size_args == 3:
                 print('** value missing **')
             else:
                 args[3] = self.analyze_parameter_value(args[3])
                 setattr(inst_data, args[2], args[3])
                 setattr(inst_data, 'updated_at', datetime.now())
+                models.storage.save()
 
 
 if __name__ == '__main__':
