@@ -1,14 +1,12 @@
-!/usr/bin/python3
+#!/usr/bin/python3
 """Defines AirBnB Clone BaseModel class"""
 import models
 from uuid import uuid4
 from datetime import datetime
-from models import storage
 
 
 class BaseModel:
     """The AirBnB Clone BaseModel"""
-
     def __init__(self, *args, **kwargs):
         """Init a new BaseModel.
         Args:
@@ -47,3 +45,4 @@ class BaseModel:
         class_info['created_at'] = self.created_at.isoformat()
         class_info['updated_at'] = self.updated_at.isoformat()
         return class_info
+
