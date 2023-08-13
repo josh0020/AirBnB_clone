@@ -14,7 +14,7 @@ class FileStorage:
         __file_path (str): Path to the JSON file
         __objects (dict): Stores all the instances
     """
-    __file_path = 'objects.json'
+    __file_path = 'file.json'
     __objects = {}
 
     def all(self):
@@ -24,19 +24,18 @@ class FileStorage:
     def new(self, obj):
         """Sets in __objects the obj with key <obj class name>.id
         Args:
-            obj (inst): The object to add in the __object class attribute
+            obj (instance): The object to add
         """
         objectId = obj.__class__.__name__ + '.' + obj.id
-        self.__objects[objectId] = obj
+        self.__objects["{}.{}".format(ocname, objectId)] = obj
 
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)
         """
-        json_dict = {}
-        for k, v in self.__objects.items():
-            json_dict[k] = v.to_dict()
-        with open(self.__file_path, mode='w') as f:
-            json.dump(json_dict, f)
+        objectdict = self.__objects
+        objdict = {obj: objectdict[obj].to_dict() for obj in objectdict.keys()}
+        with open(self.__file_path, "w") as f:
+            json.dump(objdict, f)
 
     def reload(self):
         """Deserializes the JSON file to __objects (only if the JSON file
@@ -44,12 +43,12 @@ class FileStorage:
         exist, no exception should be raised)
         """
         try:
-            with open(FileStorage.__file_path) as f:
-                objdict = json.load(f)
-                for o in objdict.values():
-                    cls_name = o["__class__"]
+            with open(self.__file_path) as f:
+                objectdict = json.load(f)
+                for o in objectdict.values():
+                    name = o["__class__"]
                     del o["__class__"]
-                    self.new(eval(cls_name)(**o))
+                    self.new(eval(name)(**o))
         except FileNotFoundError:
             return
 
