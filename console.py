@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 """AirBnB Clone Console."""
+import cmd
+
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter"""
-     prompt = '(hbnb) '
+    prompt = '(hbnb)'
 
     def do_quit(self, line):
         """quit command to exit the program"""
