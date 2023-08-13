@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""File Storage class"
+"""File Storage class
 """
 from models.base_model import BaseModel
 from models.user import User
@@ -14,7 +14,7 @@ class FileStorage:
         __file_path (str): Path to the JSON file
         __objects (dict): Stores all the instances
     """
-    __file_path = 'file.json'
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -26,8 +26,8 @@ class FileStorage:
         Args:
             obj (instance): The object to add
         """
-        objectId = obj.__class__.__name__ + '.' + obj.id
-        self.__objects["{}.{}".format(ocname, objectId)] = obj
+        name = obj.__class__.__name__
+        self.__objects["{}.{}".format(name, obj.id)] = obj
 
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)
