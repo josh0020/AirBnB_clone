@@ -47,18 +47,20 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, line):
         """Prints the string representation of an instance
          based on the class name and id"""
-        argline = parse(line)
-        objdict = storage.all()
-        if len(argline) == 0:
-            print("** class name missing **")
-        elif argline[0] not in self.__clone_classes:
+        command = self.parseline(line)[0]
+        arg = self.parseline(line)[1]
+        if command is None:
+            print('** class name missing **')
+        elif command not in self.allowed_classes:
             print("** class doesn't exist **")
-        elif len(argline) == 1:
-            print("** instance id missing **")
-        elif "{}.{}".format(argline[0], argline[1]) not in objdict:
-            print("** no instance found **")
+        elif arg == '':
+            print('** instance id missing **')
         else:
-            print("{}.{}".format(argline[0], argline[1]))
+            inst_data = models.storage.all().get(command + '.' + arg)
+            if inst_data is None:
+                print('** no instance found **')
+            else:
+                print(inst_data)
 
     def do_destroy(self, line):
         """Deletes an instance based on the class name and id
