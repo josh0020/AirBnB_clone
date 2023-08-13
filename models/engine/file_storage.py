@@ -1,8 +1,15 @@
 #!/usr/bin/python3
+"""FileStorage serialized and resererialized JSON
+"""
 from models.base_model import BaseModel
 from models.user import User
 import os.path
 import json
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.amenity import Amenity
 
 
 class FileStorage:
@@ -25,10 +32,11 @@ class FileStorage:
 
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)"""
-        dicti = self.__objects
-        objectdict = {obj: dicti[obj].to_dict() for obj in dicti.keys()}
-        with open(self.__file_path, "w") as f:
-            json.dump(objectdict, f)
+        json_object = {}
+        for key in self.__objects:
+            json_object[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, 'w') as f:
+            json.dump(json_object, f)
 
     def reload(self):
         """deserializes the JSON file to __objects (only if the JSON
