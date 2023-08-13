@@ -95,8 +95,9 @@ class HBNBCommand(cmd.Cmd):
             print([str(objects[obj]) for obj in objects])
         elif command in self.__clone_classes:
             keys = objects.keys()
-            strObjects = str(objects[key])
-            print([strObjects for key in keys if key.startswith(command)])
+            for key in keys:
+                if key.startswith(command):
+                    print([str(objects[key])])
         else:
             print("** class doesn't exist **")
 
