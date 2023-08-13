@@ -19,6 +19,11 @@ class HBNBCommand(cmd.Cmd):
     __clone_classes = [
         "BaseModel",
         "User"
+        "City",
+        "Place",
+        "Review",
+        "State",
+        "Amenity",
     ]
 
     def do_quit(self, line):
