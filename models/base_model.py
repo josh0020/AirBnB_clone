@@ -40,9 +40,9 @@ class BaseModel:
         """Return a dictionary containing all keys/values of
         __dict__ of the instance
         """
-        class_info = self.__dict__.copy()
-        class_info['__class__'] = self.__class__.__name__
-        class_info['created_at'] = self.created_at.isoformat()
-        class_info['updated_at'] = self.updated_at.isoformat()
-        return class_info
+        dicti = self.__dict__.copy()
+        dicti['__class__'] = self.__class__.__name__
+        dicti['created_at'] = self.created_at.isoformat()
+        dicti['updated_at'] = self.updated_at.isoformat()
+        return dicti
 
