@@ -1,12 +1,19 @@
-#!usr/bin/python3
-"""Defines the AirBnB Console"""
-import cmd
+#!/usr/bin/python3
+"""AirBnB Clone Console."""
+
+class HBNBCommand(cmd.Cmd):
+    """Command interpreter"""
+     prompt = '(hbnb) '
+
+    def do_quit(self, line):
+        """quit command to exit the program"""
+        return True
+
+    def do_EOF(self, line):
+        """Command to exit the program"""
+        return True
 
 
-class HBNBCommand():
-    """Defines the command interpreter"""
-    pass
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
 
-
-if __name__ == "__main__":
-    HBNBCommand()
