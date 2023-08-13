@@ -18,11 +18,10 @@ sys.path.insert(0, parent_dir)
 #class
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
-# from models.amenity import Amenity
-# from models.city import City
-# from models.place import Place
-# from models.review import Review
-# from models.state import State
+from models.amenity import Amenity
+from models.city import Cityfrom models.place import Place
+from models.review import Review
+from models.state import State
 from models.user import User
 
 
@@ -39,11 +38,11 @@ class TestFileStorage(unittest.TestCase):
         """Sets up the class test"""
 
         self.b1 = BaseModel()
-        # self.a1 = Amenity()
-        # self.c1 = City()
-        # self.p1 = Place()
-        # self.r1 = Review()
-        # self.s1 = State()
+        self.a1 = Amenity()
+        self.c1 = City()
+        self.p1 = Place()
+        self.r1 = Review()
+        self.s1 = State()
         self.u1 = User()
         self.storage = FileStorage()
         self.storage.save()
