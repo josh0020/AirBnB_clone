@@ -4,6 +4,7 @@ import inspect
 import unittest
 import pep8
 import sys
+import os
 
 """Get the current script's directory
 Add the parent directory to the Python path

@@ -5,6 +5,7 @@ import json
 import pep8
 import datetime
 import sys
+import os
 
 """Get the current script's directory
 Add the parent directory to the Python path
